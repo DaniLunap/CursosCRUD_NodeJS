@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Cursos</title>
+</head>
+<body>
+    <h1><%= accion === 'editar' ? 'Editar' : 'Nuevo' %> Curso</h1>
+
+    <form action="<%= accion === 'crear' ? '/cursos/nuevo' : '/cursos/actualizar/' + curso.id + '?_method=PUT' %>" method="POST">
+       <label>Nombre Curso: </label>
+       <input type="text" name="nombre_curso" value="<%= curso ? curso.nombre_curso : '' %>"> <br><br>
+
+       <label>Instructor: </label>
+       <input type="text" name="instructor" value="<%= curso ? curso.instructor : '' %>"> <br><br>
+
+       <label>Créditos: </label>
+       <input type="number" name="creditos" value="<%= curso ? curso.creditos : '' %>"> <br><br>
+
+       <label>Cupo Máximo: </label>
+       <input type="number" name="cupo_maximo" value="<%= curso ? curso.cupo_maximo : '' %>"> <br><br>
+       
+       <button class="btn btn-outline-primary" type="submit"> 
+         <%= accion === 'editar' ? 'Guardar cambios' : 'Crear curso' %>
+       </button>
+       <a class="btn btn-outline-danger" href="/cursos">Cancelar</a>
+    </form>
+</body>
+</html>
