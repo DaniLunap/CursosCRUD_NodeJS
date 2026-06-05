@@ -23,7 +23,6 @@ class Curso {
         db.query(sql, [data.nombre_curso, data.instructor, data.creditos, data.cupo_maximo], callback);   
     }
 
-    // ✨ CORREGIDO: Ahora recibe el ID dentro del array y ejecuta el callback al final
     static update(id, data, callback){
         const sql = `UPDATE cursos SET nombre_curso=?, instructor=?, creditos=?, cupo_maximo=? WHERE id=?`;
         db.query(sql, [data.nombre_curso, data.instructor, data.creditos, data.cupo_maximo, id], callback);

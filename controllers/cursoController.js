@@ -32,12 +32,10 @@ exports.crear = (req, res) => {
 // EDITAR
 exports.editar = (req, res) => {
     Curso.getById(req.params.id, (err, rows) => {
-        // Corrección de .length
         if (err || rows.length === 0) {
             return res.status(404).send('curso no encontrado');
         }
         Curso.getAll((err, cursos) => {
-            // Corrección: cambiamos err2 por err
             if (err) {
                 return res.status(500).send('Error');
             }
@@ -53,10 +51,9 @@ exports.editar = (req, res) => {
 exports.actualizar = (req, res) => {
     const { nombre_curso, instructor, creditos, cupo_maximo } = req.body;
     
-    // Le pasamos el ID, el objeto con los datos y el callback para redireccionar
     Curso.update(req.params.id, { nombre_curso, instructor, creditos, cupo_maximo }, (err) => {
         if (err) {
-            console.error("❌ Error de MySQL al actualizar:", err);
+            console.error("Error de MySQL al actualizar:", err);
             return res.status(500).send('Error al actualizar');
         }
         res.redirect('/cursos');
